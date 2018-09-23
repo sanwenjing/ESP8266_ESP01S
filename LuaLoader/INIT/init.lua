@@ -79,8 +79,14 @@ srv:listen(80,function(conn)
 			print("led2 off")
         elseif(txt == "states")then
 				txt = ""
+				if(_GET.PIN and _GET.PIN=="IO0") then
+				txt=txt..gpio.read(3)--For homebridge
+				elseif(_GET.PIN and _GET.PIN=="IO2") then
+				txt=txt..gpio.read(4)--For homebridge
+				else
 				txt=txt.."IO0="..gpio.read(3).."<br />"
 				txt=txt.."IO2="..gpio.read(4).."<br />"
+				end
         elseif(txt == "getip")then
 				txt = ""
 				txt=txt.."IP:"..wifi.sta.getip().."<br />"
