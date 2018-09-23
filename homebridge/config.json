@@ -1,0 +1,57 @@
+{
+	"bridge": {
+		"name": "Homebridge",
+		"username": "B8:27:EB:7C:26:AA",
+		"port": 38960,
+		"pin": "123-45-678"
+	},"accessories": [ 
+		   {
+		      	"accessory": "Http",
+		   	"name": "Switch1",
+		   	"switchHandling": "realtime",
+		   	"http_method": "GET",
+		   	"on_url":      "http://192.168.31.240?action=OFF1",
+		   	"off_url":     "http://192.168.31.240?action=ON1",
+		   	"status_url":  "http://192.168.31.240?action=states&PIN=IO0",
+		   	"service": "Switch",
+		   	"brightnessHandling": "no",
+		   	"brightness_url":     "http://localhost/controller/1707/%b",
+		   	"brightnesslvl_url":  "http://localhost/status/100054",
+		   	"sendimmediately": "",
+		   	"username" : "",
+		   	"password" : ""					    
+		      } ,
+		   {
+		      	"accessory": "Http",
+		   	"name": "Switch2",
+		   	"switchHandling": "realtime",
+		   	"http_method": "GET",
+		   	"on_url":      "http://192.168.31.193?action=OFF1",
+		   	"off_url":     "http://192.168.31.193?action=ON1",
+		   	"status_url":  "http://192.168.31.193/?action=states&PIN=IO0",
+		   	"service": "Switch",
+		   	"brightnessHandling": "no",
+		   	"brightness_url":     "http://localhost/controller/1707/%b",
+		   	"brightnesslvl_url":  "http://localhost/status/100054",
+		   	"sendimmediately": "",
+		   	"username" : "",
+		   	"password" : ""					    
+		      }, 
+		   {
+		      	"accessory": "Http",
+		   	"name": "Switch3",
+		   	"switchHandling": "realtime",
+		   	"http_method": "GET",
+		   	"on_url":      "http://192.168.31.197?action=OFF1",
+		   	"off_url":     "http://192.168.31.197?action=ON1",
+		   	"status_url":  "http://192.168.31.197/?action=states&PIN=IO0",
+		   	"service": "Switch",
+		   	"brightnessHandling": "no",
+		   	"brightness_url":     "http://localhost/controller/1707/%b",
+		   	"brightnesslvl_url":  "http://localhost/status/100054",
+		   	"sendimmediately": "",
+		   	"username" : "",
+		   	"password" : ""					    
+		      } 
+	]
+}
