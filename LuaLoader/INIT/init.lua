@@ -80,9 +80,11 @@ srv:listen(80,function(conn)
         elseif(txt == "states")then
 				txt = ""
 				if(_GET.PIN and _GET.PIN=="IO0") then
-				txt=txt..gpio.read(3)--For homebridge
+				--txt=txt..gpio.read(3)--For homebridge
+				if(gpio.read(3)==0)then txt=1 else txt=0 end
 				elseif(_GET.PIN and _GET.PIN=="IO2") then
-				txt=txt..gpio.read(4)--For homebridge
+				--txt=txt..gpio.read(4)--For homebridge
+				if(gpio.read(4)==0)then txt=1 else txt=0 end
 				else
 				txt=txt.."IO0="..gpio.read(3).."<br />"
 				txt=txt.."IO2="..gpio.read(4).."<br />"
