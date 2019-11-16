@@ -2,7 +2,7 @@ function getString(body)
 if(body) then
 return "<html><head><title>ESP-01s</title></head><body>"..body.."</body></html>"
 else
-return "<html><head><title>ESP-01s</title></head><body>Bad actions!</body></html>"
+return "<html><head><title>ESP-01s</title></head><body>Bad actions! </body></html>"
 end
 end
 
@@ -66,17 +66,30 @@ srv:listen(80,function(conn)
         end
 		local txt=_GET.action
 		if(txt == "ON1")then
-              gpio.write(led1, gpio.HIGH);
+              gpio.write(led1, gpio.HIGH)
 			  print("led1 on")
         elseif(txt == "OFF1")then
-              gpio.write(led1, gpio.LOW);
+              gpio.write(led1, gpio.LOW)
 			print("led1 off")
 		elseif(txt == "ON2")then
-              gpio.write(led2, gpio.HIGH);
+              gpio.write(led2, gpio.HIGH)
 			print("led2 on")
         elseif(txt == "OFF2")then
-              gpio.write(led2, gpio.LOW);
+              gpio.write(led2, gpio.LOW)
 			print("led2 off")
+		elseif(txt == "getid")then --getid
+			  txt=node.chipid()
+			print("SN:"..txt)
+		elseif(txt == "delay")then --delay 5s
+			  gpio.write(led1, gpio.HIGH)
+			  tmr.delay(5000000)
+			  gpio.write(led1, gpio.LOW)
+			print("delay 5S")
+		elseif(txt == "delay1")then --delay 5s
+			  gpio.write(led1, gpio.LOW)
+			  tmr.delay(5000000)
+			  gpio.write(led1, gpio.HIGH)
+			print("delay 5S")
         elseif(txt == "states")then
 				txt = ""
 				if(_GET.PIN and _GET.PIN=="IO0") then
