@@ -1,0 +1,35 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+mqtt:
+  discovery: true
+  discovery_prefix: wenshidu_1
+sensor:
+  - platform: mqtt
+    name: "TEMP"
+    unique_id: "root1-TEMP"
+    state_topic: "wenshidu_1/Temprature/Temperature"
+
+  - platform: mqtt
+    name: "Humidity"
+    unique_id: "room1-humi"
+    state_topic: "wenshidu_1/Temprature/Humidity"
+switch:
+  - platform: mqtt
+    name: "esptest"
+    state_topic: "test01/esp01/Switch"
+    command_topic: "test01/GPIO/0"
+    payload_on: "0"
+    payload_off: "1"
+    qos: 0
+    retain: true
+
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
