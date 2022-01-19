@@ -1,0 +1,17 @@
+######2022-01-19######
+#######0.04.007#######
+######FLASH INFO######
+BIN file: Programming only...
+COM port: (COM3) USB-SERIAL CH340 (Port_#0001.Hub_#0005)
+Baud rate: 115200
+######POST FLASH######
+Unit name: 
+Unit number: 
+Admin password: 
+WiFi SSID 1: 
+WiFi password 1: 
+WiFi SSID 2: 
+WiFi password 2: 
+IP: <DHCP>
+######POST FLASH######
+[2022-01-19 18:03:38] Sending SERIAL: "..."
