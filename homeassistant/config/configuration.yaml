@@ -13,15 +13,16 @@ sensor:
     name: "TEMP"
     unique_id: "root1-TEMP"
     state_topic: "wenshidu_1/Temprature/Temperature"
-    unit_of_measurement: "℃"
-    value_template: "{{value}}"
+#    value_template: "{{value}}"
+    device_class: temperature
+
 
   - platform: mqtt
     name: "Humidity"
-    unique_id: "room1-humi"
     state_topic: "wenshidu_1/Temprature/Humidity"
     unit_of_measurement: "%"
-    value_template: "{{value}}"
+#    value_template: "{{value}}"
+    device_class: humidity
 
 switch:
   - platform: mqtt
