@@ -13,21 +13,43 @@ sensor:
     name: "TEMP"
     unique_id: "root1-TEMP"
     state_topic: "wenshidu_1/Temprature/Temperature"
+    unit_of_measurement: "℃"
+    value_template: "{{value}}"
 
   - platform: mqtt
     name: "Humidity"
     unique_id: "room1-humi"
     state_topic: "wenshidu_1/Temprature/Humidity"
+    unit_of_measurement: "%"
+    value_template: "{{value}}"
+
 switch:
   - platform: mqtt
-    name: "esptest"
-    state_topic: "test01/esp01/Switch"
-    command_topic: "test01/GPIO/0"
+    name: "switch_01"
+    state_topic: "switch01/esp01/Switch"
+    command_topic: "switch01/GPIO/0"
     payload_on: "0"
     payload_off: "1"
     qos: 0
     retain: true
 
+  - platform: mqtt
+    name: "switch_02"
+    state_topic: "switch02/esp01/Switch"
+    command_topic: "switch02/GPIO/0"
+    payload_on: "0"
+    payload_off: "1"
+    qos: 0
+    retain: true
+
+  - platform: mqtt
+    name: "switch_03"
+    state_topic: "wenshidu_1/esp01/Switch"
+    command_topic: "wenshidu_1/GPIO/0"
+    payload_on: "0"
+    payload_off: "1"
+    qos: 0
+    retain: true
 
 group: !include groups.yaml
 automation: !include automations.yaml
