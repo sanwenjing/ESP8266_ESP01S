@@ -15,6 +15,12 @@ sensor:
     state_topic: "wenshidu_1/Temprature/Temperature"
     device_class: temperature
 
+  - platform: mqtt
+    name: "xt-home-temp"
+    unique_id: "root1-hometemp"
+    state_topic: "switch05/esp01/temperature"
+    device_class: temperature
+
 
   - platform: mqtt
     name: "Humidity"
@@ -22,9 +28,19 @@ sensor:
     unit_of_measurement: "%"
     device_class: humidity
 
+
+binary_sensor:
+  - platform: mqtt
+    name: "human"
+    state_topic: "switch04/human/State"
+    device_class: opening
+    payload_on: "0"
+    payload_off: "1"
+
 switch:
   - platform: mqtt
     name: "switch_01"
+    unique_id: "switch_01"
     state_topic: "switch01/esp01/Switch"
     command_topic: "switch01/GPIO/0"
     payload_on: "0"
@@ -34,6 +50,7 @@ switch:
 
   - platform: mqtt
     name: "switch_02"
+    unique_id: "switch_02"
     state_topic: "switch02/esp01/Switch"
     command_topic: "switch02/GPIO/0"
     payload_on: "0"
@@ -43,12 +60,43 @@ switch:
 
   - platform: mqtt
     name: "switch_03"
+    unique_id: "switch_03"
     state_topic: "wenshidu_1/esp01/Switch"
     command_topic: "wenshidu_1/GPIO/0"
     payload_on: "0"
     payload_off: "1"
     qos: 0
     retain: true
+
+  - platform: mqtt
+    name: "switch_04"
+    unique_id: "switch_04"
+    state_topic: "switch04/esp01/Switch"
+    command_topic: "switch04/GPIO/0"
+    payload_on: "0"
+    payload_off: "1"
+    qos: 0
+    retain: true
+
+  - platform: mqtt
+    name: "switch_05"
+    unique_id: "switch_05"
+    state_topic: "switch05/esp01/Switch"
+    command_topic: "switch05/GPIO/0"
+    payload_on: "0"
+    payload_off: "1"
+    qos: 0
+    retain: true
+
+device_tracker:
+  - platform: ping
+    hosts:
+      phone1: 192.168.1.2
+      phone2: 192.168.1.3
+      phone3: 192.168.1.4
+    interval_seconds: 30 
+    consider_home: 180
+
 
 group: !include groups.yaml
 automation: !include automations.yaml
