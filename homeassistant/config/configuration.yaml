@@ -21,6 +21,13 @@ sensor:
     state_topic: "switch05/esp01/temperature"
     device_class: temperature
 
+  - platform: mqtt
+    name: "RFCode"
+    unique_id: "rf8266_RFcode"
+    state_topic: "rf8266/ESP8266RF/433toMQTT"
+    value_template: "{{value_json['value']}}"
+    device_class: temperature
+
 
   - platform: mqtt
     name: "Humidity"
@@ -33,6 +40,13 @@ binary_sensor:
   - platform: mqtt
     name: "human"
     state_topic: "switch04/human/State"
+    device_class: opening
+    payload_on: "0"
+    payload_off: "1"
+
+  - platform: mqtt
+    name: "light"
+    state_topic: "switch02/light/state"
     device_class: opening
     payload_on: "0"
     payload_off: "1"
@@ -88,6 +102,52 @@ switch:
     qos: 0
     retain: true
 
+  - platform: mqtt
+    name: "switch_06"
+    unique_id: "switch_06"
+    state_topic: "switch06/io0/State"
+    command_topic: "switch06/GPIO/0"
+    payload_on: "0"
+    payload_off: "1"
+    qos: 0
+    retain: true
+
+  - platform: mqtt
+    name: "switch_07"
+    unique_id: "switch_07"
+    state_topic: "switch06/io2/State"
+    command_topic: "switch06/GPIO/2"
+    payload_on: "0"
+    payload_off: "1"
+    qos: 0
+    retain: true
+
+  - platform: mqtt
+    name: "rfswitch_01"
+    unique_id: "rfswitch_01"
+    state_topic: "rf8266/ESP8266RF/433toMQTT"
+    command_topic: "rf8266/ESP8266RF/commands/MQTTto433"
+    value_template: "{{ value_json.value }}"
+    payload_on: "{\"value\":12148132}"
+    payload_off: "{\"value\":12148136}"
+    state_on: 12148132
+    state_off: 12148136
+    qos: 0
+    retain: true
+
+  - platform: mqtt
+    name: "rfswitch_02"
+    unique_id: "rfswitch_02"
+    state_topic: "rf8266/ESP8266RF/433toMQTT"
+    command_topic: "rf8266/ESP8266RF/commands/MQTTto433"
+    value_template: "{{ value_json.value }}"
+    payload_on: "{\"value\":6623844}"
+    payload_off: "{\"value\":6623848}"
+    state_on: 6623844
+    state_off: 6623848
+    qos: 0
+    retain: true
+
 device_tracker:
   - platform: ping
     hosts:
@@ -97,6 +157,17 @@ device_tracker:
     interval_seconds: 30 
     consider_home: 180
 
+notify:
+  - platform: smtp
+    name: 1111
+    server: smtp.111.com
+    port: 25
+    sender: report@111.com
+    username: report@111.com
+    password: 111
+    sender_name: HASS
+    recipient:
+      - 111@163.com
 
 group: !include groups.yaml
 automation: !include automations.yaml
