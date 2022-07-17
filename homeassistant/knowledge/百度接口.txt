@@ -1,0 +1,30 @@
+百度接口:
+
+先登录百度云开放平台,贴入下面网址:列出所有设备(JSON).
+https://xiaodu.baidu.com/saiya/smarthome/devicelist?from=h5_control&generalscene=2
+
+打开控制界面:
+https://xiaodu.baidu.com/saiya/smarthome/index.html
+
+控制设备:
+Request URL:https://xiaodu.baidu.com/saiya/smarthome/directivesend?from=h5_control
+Request Method:POST
+
+
+{"header":{"namespace":"DuerOS.ConnectedHome.Control","name":"TurnOnRequest","payloadVersion":1},"payload":{"appliance":{"applianceId":["你的设备ID"]},"parameters":{"proxyConnectStatus":false}}}
+{"header":{"namespace":"DuerOS.ConnectedHome.Control","name":"TurnOffRequest","payloadVersion":1},"payload":{"appliance":{"applianceId":["你的设备ID"]},"parameters":{"proxyConnectStatus":false}}}
+
+cookie:
+BDUSS=你的COOKIE值
+
+homeassistant配置
+  - platform: command_line
+    switches:
+      switch_air_condition:
+        command_on: "/usr/bin/curl -H \"Content-Type: application/json\" -X POST -b \"BDUSS=你的COOKIE值\" -d '{\"header\":{\"namespace\":\"DuerOS.ConnectedHome.Control\",\"name\":\"TurnOnRequest\",\"payloadVersion\":1},\"payload\":{\"appliance\":{\"applianceId\":[\"你的设备ID\"]},\"parameters\":{\"proxyConnectStatus\":false}}}' https://xiaodu.baidu.com/saiya/smarthome/directivesend?from=h5_control"
+        command_off: "/usr/bin/curl -H \"Content-Type: application/json\" -X POST -b \"BDUSS=你的COOKIE值\" -d '{\"header\":{\"namespace\":\"DuerOS.ConnectedHome.Control\",\"name\":\"TurnOffRequest\",\"payloadVersion\":1},\"payload\":{\"appliance\":{\"applianceId\":[\"你的设备ID\"]},\"parameters\":{\"proxyConnectStatus\":false}}}' https://xiaodu.baidu.com/saiya/smarthome/directivesend?from=h5_control"
+        friendly_name: air_con
+
+
+
+
